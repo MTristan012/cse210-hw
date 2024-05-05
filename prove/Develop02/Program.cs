@@ -4,6 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
+        /* 
+            In this version the date and time of the note is saved, the csv format is requested to save and also the mood. 
+        */
+        
         Journal theJournal = new Journal();
         PromptGenerator promptGenerator = new PromptGenerator();
 
