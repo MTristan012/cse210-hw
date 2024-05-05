@@ -7,6 +7,7 @@ public class Entry
     public string _date;
     public string _promptText;
     public string _entry;
+    public string _mood;
 
     public Entry(Journal journal)
     {
@@ -32,12 +33,18 @@ public class Entry
         {
             case 1:
                 string promptText = promptGenerator.GetRandomPrompt();
-                Console.WriteLine($"Prompt: {promptText}");
-                Console.Write("Enter the entry: ");
+                Console.WriteLine($"Q: {promptText}");
+                Console.Write("A: ");
                 string entryText = Console.ReadLine();
+
+                Console.Write("How do you feel?: ");
+                string mood = Console.ReadLine();
+
                 Entry newEntry = new Entry(_journal);
                 newEntry._promptText = promptText;
                 newEntry._entry = entryText;
+                newEntry._mood = mood;
+
                 _journal.AddEntry(newEntry);
                 break;
             case 2:
@@ -49,9 +56,11 @@ public class Entry
                 _journal.LoadFromFile(fileName);
                 break;
             case 4:
+                Console.WriteLine("Enter the format to save (csv): ");
+                string formatToSave = Console.ReadLine().ToLower();
                 Console.Write("Enter the file name to save: ");
                 string fileNameToSave = Console.ReadLine();
-                _journal.SaveToFile(fileNameToSave);
+                _journal.SaveToFile(fileNameToSave, formatToSave);
                 break;
             case 5:
                 Console.WriteLine("Be Safe, Friend. Don't you dare go Hollow");
