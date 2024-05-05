@@ -1,0 +1,20 @@
+[
+  {
+    "Date": "2024-05-04 18:29:23",
+    "Prompt": "What was the most challenging part of your day?",
+    "Entry": "The LoadFromFile aren\u0027t working well because a comma in one question",
+    "Mood": "tired"
+  },
+  {
+    "Date": "2024-05-04 18:29:55",
+    "Prompt": "What was the best part of my day?",
+    "Entry": "When the code compiles",
+    "Mood": "happy"
+  },
+  {
+    "Date": "2024-05-04 18:30:50",
+    "Prompt": "How did I see the hand of the Lord in my life today?",
+    "Entry": "I finished my Institute homework too",
+    "Mood": "peacefully"
+  }
+]

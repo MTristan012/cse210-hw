@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Text.Json;
 
 public class Journal
@@ -46,8 +44,11 @@ public class Journal
                 case "csv":
                     SaveToCsv($"{file}.{format}");
                     break;
+                case "json":
+                    SaveToJson($"{file}.{format}");
+                    break;
                 default:
-                    Console.WriteLine("Invalid format. Please choose 'csv'.");
+                    Console.WriteLine("Invalid format. Please choose 'csv' or 'json'.");
                     break;
             }
         }
@@ -69,28 +70,30 @@ public class Journal
 
         Console.WriteLine("Entries saved to CSV file successfully.");
     }
-
+    
     private void SaveToJson(string file)
     {
-        if (_entries == null || _entries.Count == 0)
+        var jsonEntries = new List<object>();
+
+        foreach (var entry in _entries)
         {
-            Console.WriteLine("No entries available to save.");
-            return;
+            var jsonEntry = new
+            {
+                Date = entry._date,
+                Prompt = entry._promptText,
+                Entry = entry._entry,
+                Mood = entry._mood
+            };
+
+            jsonEntries.Add(jsonEntry);
         }
 
-        string jsonData = JsonSerializer.Serialize(_entries);
-        Debug.WriteLine(jsonData);
+        string jsonData = JsonSerializer.Serialize(jsonEntries, new JsonSerializerOptions { WriteIndented = true });
 
         File.WriteAllText(file, jsonData);
 
         Console.WriteLine("Entries saved to JSON file successfully.");
     }
-
-    public enum FileType
-    {
-        CSV
-    }
-
 
     public void LoadFromFile(string file)
     {
@@ -105,7 +108,7 @@ public class Journal
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        // Saltar líneas vacías
+
                         if (string.IsNullOrWhiteSpace(line))
                         {
                             continue;

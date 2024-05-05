@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {
         /* 
-            In this version the date and time of the note is saved, the csv format is requested to save and also the mood. 
+            In this version the date and time of the note is saved, the csv or json format is requested to save and also the mood. Only read csv files 
         */
         
         Journal theJournal = new Journal();

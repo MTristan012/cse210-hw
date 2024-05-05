@@ -56,7 +56,7 @@ public class Entry
                 _journal.LoadFromFile(fileName);
                 break;
             case 4:
-                Console.WriteLine("Enter the format to save (csv): ");
+                Console.WriteLine("Enter the format to save (csv/json): ");
                 string formatToSave = Console.ReadLine().ToLower();
                 Console.Write("Enter the file name to save: ");
                 string fileNameToSave = Console.ReadLine();
